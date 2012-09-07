@@ -17,6 +17,16 @@ CALL CRLF
 MOV SI, Line4
 CALL PrintString
 
+;color character
+;MOV AH, 0x09
+;MOV AL, 0x0e ;char
+;MOV BH, 0x00
+;MOV BL, 0x0e ;color
+;MOV CX, 1 ;x
+;;MOV DX, 1 ;y
+;INT 0x10
+
+
 
 JMP $ 		;Infinite loop, hang it here.
 
