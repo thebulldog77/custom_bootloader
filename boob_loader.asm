@@ -29,8 +29,8 @@ INT 0x10
 MOV SI, colorarray
 CALL PrintPixelString
 
-MOV DX, 2
-MOV [xpos], 0
+MOV DX, 1
+MOV byte [xpos], 0
 MOV SI, colorarray
 CALL PrintPixelString
 
