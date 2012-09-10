@@ -76,8 +76,8 @@ PrintPixelString:	;Procedure to print string on screen
   next_char:	;Lable to fetch next character from string
   MOV AL, [SI]		;Get a byte from string and store in AL register
   INC SI		;Increment SI pointer
-  OR AL, AL		;Check if value in AL is zero (end of string)
-  JZ exit_func	;If end then return
+  test [0xf], AL                ;Check if value in AL is zero (end of string)
+  JG exit_func  ;If end then return
   MOV AH, 0x0c
   MOV BH, 0x00
   MOV CX, [xpos]
@@ -136,7 +136,8 @@ Line2 db 'BOOBS GO HERE', 0	;HelloWorld string ending with 0
 Line3 db 'MOAR BOOBS', 0	;HelloWorld string ending with 0
 Line4 db 'MOAR MOAR BOOBS', 0	;HelloWorld string ending with 0
 
-colorarray db 1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,0
+;colorarray db 1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,0
+colorarray db 0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0xf,0,0x10
 
 TIMES 510 - ($ - $$) db 0	;Fill the rest of sector with 0
 DW 0xAA55			;Add boot signature at the end of bootloader
